@@ -14,7 +14,7 @@ public class ProductValidator {
     }
 
     public static String inputName() {
-        String regex = "^[a-zA-Z1-9\\s]{6,8}$";
+        String regex = "^[a-zA-ZÀ-ỹ1-9\\s]{6,8}$";
         String name;
         do {
             System.out.println("Nhap ten 6-8 ky tu: ");
