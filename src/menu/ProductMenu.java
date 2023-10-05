@@ -14,10 +14,10 @@ public class ProductMenu {
         int choice;
         do {
             System.out.println("========= Product Manager ====== \n" +
-                    "1.Thêm mới sản phẩm\n" +
-                    "2.Sửa sản phẩm\n" +
-                    "3.Xóa sản phẩm\n" +
-                    "4.Hiển thị tất cả\n" +
+                    "1. Thêm mới sản phẩm\n" +
+                    "2. Sửa sản phẩm\n" +
+                    "3. Xóa sản phẩm\n" +
+                    "4. Hiển thị tất cả\n" +
                     "5. Tìm theo Id\n" +
                     "6. Tìm theo tên\n" +
                     "7. Tìm theo loại hàng\n" +
@@ -51,15 +51,34 @@ public class ProductMenu {
     }
 
     private static void findByCategoryMenu() {
+        System.out.println("==========Tìm kiếm bằng loại hàng==========");
+        System.out.println("Nhập loại hàng:");
+        String category = Input.inputString();
+        List<Product> searchList = productManager.findByCategory(category);
+        for (Product product : searchList) System.out.println(product);
     }
 
     private static void findByNameMenu() {
+        System.out.println("==========Tìm kiếm bằng tên==========");
+        System.out.println("Nhập tên:");
+        String name = Input.inputString();
+        List<Product> searchList = productManager.findByName(name);
+        for (Product product : searchList) System.out.println(product);
     }
 
     private static void findByIdMenu() {
+        System.out.println("==========Tìm kiếm bằng Id==========");
+        System.out.println("Nhập Id:");
+        int id = ProductValidator.inputId();
+        int index = productManager.findById(id);
+        if (index == -1) {
+            System.out.println("Id không tồn tại");
+            return;
+        }
+        System.out.println(productManager.findAll().get(index));
     }
 
-    private  static void deleteMenu() {
+    private static void deleteMenu() {
         System.out.println("---=Xoá sản phẩm=---");
         System.out.println("Nhập Id sản phẩm:");
         int id = ProductValidator.inputId();
@@ -99,10 +118,8 @@ public class ProductMenu {
         int quantity = ProductValidator.inputQuantity();
         System.out.println("Nhập loại mặt hàng:");
         String category = Input.inputString();
-        product.setName(name);
-        product.setPrice(price);
-        product.setQuantity(quantity);
-        product.setCategory(category);
+        Product newProduct = new Product(id, name, price, quantity, category);
+        productManager.edit(id, newProduct);
         System.out.println("Sửa đổi thành công.");
     }
 

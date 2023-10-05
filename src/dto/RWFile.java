@@ -15,7 +15,7 @@ public class RWFile {
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
             StringBuilder line = new StringBuilder();
             for (Product product : productList) {
-                line.append(product.getData());
+                line.append(product.getData()).append("\n");
             }
             bufferedWriter.write(line.toString());
             bufferedWriter.close();

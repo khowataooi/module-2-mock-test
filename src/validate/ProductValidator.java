@@ -14,7 +14,7 @@ public class ProductValidator {
     }
 
     public static String inputName() {
-        String regex = "^[a-zA-Z\\s]{6,8}$";
+        String regex = "^[a-zA-Z1-9\\s]{6,8}$";
         String name;
         do {
             System.out.println("Nhap ten 6-8 ky tu: ");
@@ -24,7 +24,7 @@ public class ProductValidator {
     }
 
     public static int inputPrice() {
-        String regex = "^([1-9]\\d{2})$";
+        String regex = "^(0|[1-9]\\d{0,2})$";
         String price;
         do {
             System.out.println("Nhap gia tien nho hon 1000: ");
@@ -34,7 +34,7 @@ public class ProductValidator {
     }
 
     public static int inputQuantity() {
-        String regex = "^([1-9]\\d{1})$";
+        String regex = "^(0?[1-9]|[1-9]\\d)$";
         String quantity;
         do {
             System.out.println("Nhap so luong nho hon 100: ");

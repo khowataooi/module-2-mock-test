@@ -8,9 +8,9 @@ public interface Manager<T> {
 
     void add(T product);
 
-    boolean edit(int id, String name, int quantity, int price, String category);
+    void edit(int id, T product);
 
-    boolean delete(int id);
+    void delete(int id);
 
     List<T> findAll();
 

@@ -22,25 +22,17 @@ public class ProductManager implements Manager<Product> {
     }
 
     @Override
-    public boolean edit(int id, String name, int quantity, int price, String category) {
+    public void edit(int id, Product product) {
         int index = findById(id);
-        if (index == -1) return false;
-        Product product = productList.get(index);
-        product.setName(name);
-        product.setQuantity(quantity);
-        product.setPrice(price);
-        product.setCategory(category);
+        productList.set(index, product);
         rwFile.writeFile(productList);
-        return true;
     }
 
     @Override
-    public boolean delete(int id) {
+    public void delete(int id) {
         int index = findById(id);
-        if (index == -1) return false;
         productList.remove(index);
         rwFile.writeFile(productList);
-        return true;
     }
 
     @Override
@@ -60,7 +52,7 @@ public class ProductManager implements Manager<Product> {
     public List<Product> findByName(String searchStr) {
         List<Product> resultList = new ArrayList<>();
         for (Product product : productList) {
-            if (product.getName().contains(searchStr)) {
+            if (product.getName().toLowerCase().contains(searchStr.toLowerCase())) {
                 resultList.add(product);
             }
         }
@@ -71,7 +63,7 @@ public class ProductManager implements Manager<Product> {
     public List<Product> findByCategory(String category) {
         List<Product> resultList = new ArrayList<>();
         for (Product product : productList) {
-            if (product.getCategory().equals(category)) {
+            if (product.getCategory().equalsIgnoreCase(category)) {
                 resultList.add(product);
             }
         }
